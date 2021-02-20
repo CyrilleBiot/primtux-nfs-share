@@ -33,19 +33,19 @@ ipServeur=$1
 # Test validité de l'IP
 if [[ $ipServeur =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; 
 	then
-		echo "Format d'ip valide"
+		echo "Format d'ip valide."
 	else
-		echo "L'ip n'a pas un format accpetable"
+		echo "L'ip n'a pas un format accpetable."
 	fi
 	
 # Test paquet client nfs-common installé ou non
 if [[ $(aptitude search nfs-common | cut -d " " -f 1) = "i" ]]
 	then
-        echo "Well, nfs-common is installed"
+        echo "Bien, nfs-common est déjà installé."
 	else
-		echo "nfs-common is not installed."
-		echo "Install nfs-common package."
-		#apt install nfs-common
+		echo "Attation : nfs-common n'est installé."
+		echo "Installation du paquet  nfs-common."
+		apt install nfs-common
 fi
 
 # Préparation des partages
