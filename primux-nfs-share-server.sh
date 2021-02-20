@@ -34,6 +34,11 @@ mkdir /home/administrateur/partage-administrateur
 
 # Configuration du fichier exports
 # Partage lecture / ecriture
+echo "# ===========================================" >> /etc/exports
+echo "#" >> /etc/exports
+echo "# Partage NFS Primtux" >> /etc/exports
+echo "#" >> /etc/exports
+echo "#" >> /etc/exports
 echo "/home/01-mini/partage-mini /home/01-mini/partage-mini $ipMini.1/24(rw,sync)" rw,users 0 0 >> /etc/exports
 echo "/home/02-super/partage-super /home/02-super/partage-super $ipMini.1/24(rw,sync)"  >> /etc/exports
 echo "/home/03-maxi/partage-maxi /home/03-maxi/partage-maxi $ipMini.1/24(rw,sync)"  >> /etc/exports
@@ -41,6 +46,9 @@ echo "/home/01-mini/partage-mini /home/administrateur/partage-mini $ipMini.1/24(
 echo "/home/02-super/partage-super /home/administrateur/partage-super $ipMini.1/24(rw,sync)"  >> /etc/exports
 echo "/home/administrateur/partage-administrateur $ipMini.1/24(rw,sync) $ipMini.1/24(rw,sync)" >> /etc/exports
 echo "/home/03-maxi/partage-maxi /home/administrateur/partage-maxi $ipMini.1/24(rw,sync)"  >> /etc/exports
+echo "#" >> /etc/exports
+echo "#" >> /etc/exports
+echo "# ===========================================" >> /etc/exports
 
 # Redémarrage des services
 service nfs-kernel-server restart
