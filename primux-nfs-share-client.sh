@@ -1,15 +1,19 @@
 #!/bin/bash
-
+# Name : cyrille <cyrille@cbiot.fr>
+# GIT : https://github.com/CyrilleBiot/primtux-nfs-share/
+#
 # Installation du partage nfs sur les clients primtux
+# 
+# Ne fonctionne qu'avec IPv4
+#
 # Le serveur doit être paramétré avant de lancer cette installation
-# Les rép doivent exister
-# ----------  mkdir /home/01-mini/partage-mini
-# ----------  mkdir /home/02-super/partage-super
-# ----------  mkdir /home/03-maxi/partage-maxi
-# ----------  mdir  /home/administrateur/partage-mini
-# ----------  mdir  /home/administrateur/partage-super
-# ----------  mdir  /home/administrateur/partage-maxi
-# ----------  mkdir /home/administrateur/partage-administrateur
+# Pour le paramétrage du serveur, utiliser le script
+# primux-nfs-share-server.sh
+#
+# Syntaxe 
+# primux-nfs-share-server.sh <ipv4 du serveur nfs>
+# 
+
 
 # Test si existence parametre IP 
 if [[ -z "$1" ]]
