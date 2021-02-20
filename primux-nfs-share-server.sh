@@ -59,7 +59,7 @@ echo "#" >> /etc/exports
 echo "# Partage NFS Primtux" >> /etc/exports
 echo "#" >> /etc/exports
 echo "#" >> /etc/exports
-echo "/home/01-mini/partage-mini $ipMini.1/24(rw,sync)" rw,users 0 0 >> /etc/exports
+echo "/home/01-mini/partage-mini $ipMini.1/24(rw,sync)"  >> /etc/exports
 echo "/home/02-super/partage-super $ipMini.1/24(rw,sync)"  >> /etc/exports
 echo "/home/03-maxi/partage-maxi $ipMini.1/24(rw,sync)"  >> /etc/exports
 echo "/home/administrateur/partage-mini $ipMini.1/24(rw,sync)"  >> /etc/exports
@@ -71,4 +71,4 @@ echo "#" >> /etc/exports
 echo "# ===========================================" >> /etc/exports
 
 # Redémarrage des services
-systemctl start nfs-kernel-server
+systemctl restart nfs-kernel-server
