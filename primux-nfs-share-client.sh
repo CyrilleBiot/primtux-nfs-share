@@ -15,6 +15,12 @@
 # 
 
 
+# Test des droits d'execution
+if [[ $EUID -ne 0 ]]; then
+   echo "Ce script doit être lancé en root ou via sudo" 
+   exit 1
+fi
+
 # Test si existence parametre IP 
 if [[ -z "$1" ]]
   then

@@ -20,6 +20,12 @@
 # primux-nfs-share-server.sh 
 # 
 
+# Test des droits d'execution
+if [[ $EUID -ne 0 ]]; then
+   echo "Ce script doit être lancé en root ou via sudo" 
+   exit 1
+fi
+
 # Recupération de l'ip de la machine
 ipServer=$(hostname -I)
 ipMini=$(hostname -I | cut -d '.' -f 1-3)
