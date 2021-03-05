@@ -28,6 +28,34 @@ if [[ -z "$1" ]]
     exit
 fi
 
+
+# Test si desinstallation souhaitée
+if [[ $1 = "clean" ]]
+  then
+	# Confirmer la suppression de la configuration
+	read -p "Attention. Voulez réellement supprimer la config nfs serveur (oui / non) ?" answer
+	if echo "$answer" | grep -i "^o" ;then
+		# On efface la configuration
+		rm -rf /home/01-mini/partage-mini
+		rm -rf /home/02-super/partage-super
+		rm -rf /home/03-maxi/partage-maxi
+		rm -rf /home/administrateur/partage-administrateur
+		
+		# On rétablit les fichiers d'origine
+		sed -e '/# primtux/{N;N;N;N;N;d}' /etc/fstab
+		
+		# On redémarre les services
+		exportfs -a
+		systemctl restart nfs-kernel-server
+		exit 1
+	else
+		exit 1
+	fi
+fi
+
+
+
+
 ipServeur=$1
 
 # Test validité de l'IP

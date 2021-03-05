@@ -38,7 +38,7 @@ if [[ $1 = "clean" ]]
 		
 		# On rétablit les fichiers d'origine
 		sed -e '/# primtux/{N;N;N;N;N;N;N;N;d}' /etc/exports
-		sed -e '/# primtux/{N;N;N;N;N;N;d}' /etc/hosts.allow
+		sed -e '/# primtux/{N;N;N;N;N;d}' /etc/hosts.allow
 		
 		# On redémarre les services
 		exportfs -a
@@ -102,7 +102,6 @@ fi
       		        		# Droit sur réseau local
       		        		echo "# Partage NFS Primtux" >> /etc/hosts.allow
       		        		echo "#" >> /etc/hosts.allow
-      		        		echo "# Partage NFS Primtux" >> /etc/hosts.allow
       		        		echo "ALL:LOCAL" >> /etc/hosts.allow
       		        		echo "#" >> /etc/hosts.allow
       		        		echo "# ===========================================" >> /etc/hosts.allow
