@@ -11,6 +11,9 @@ Un groupe spécifique est créé : primtux-nfs comprenant les users 01-mini, 02-
 
 ### Le script serveur pour le serveur
 
+
+Le serveur doit avoir une IP Fixe.
+
  Fichiers modifiés /etc/hosts.allow, /etc/exports
  
  Dossiers créés
