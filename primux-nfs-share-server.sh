@@ -37,8 +37,8 @@ if [[ $1 = "clean" ]]
 		rm -rf /home/administrateur/partage-administrateur
 		
 		# On rétablit les fichiers d'origine
-		sed -e '/# primtux/{N;N;N;N;N;N;N;N;d}' /etc/exports
-		sed -e '/# primtux/{N;N;N;N;N;d}' /etc/hosts.allow
+		sed -e '/# Partage NFS Primtux/{N;N;N;N;N;N;N;N;d}' /etc/exports
+		sed -e '/# Partage NFS Primtux/{N;N;N;N;N;d}' /etc/hosts.allow
 		
 		# On redémarre les services
 		exportfs -a
@@ -66,11 +66,11 @@ fi
 
 							# Création d'un nouveau groupe primtux-nfs
 							# Et ajout des users
-						    #addgroup primtux-nfs
-							#adduser administrateur  primtux-nfs
-							#adduser 01-mini  primtux-nfs
-							#adduser  02-super primtux-nfs
-							#adduser  03-maxi primtux-nfs
+						    addgroup primtux-nfs
+							adduser administrateur  primtux-nfs
+							adduser 01-mini  primtux-nfs
+							adduser  02-super primtux-nfs
+							adduser  03-maxi primtux-nfs
 							
 							# On récup l'UID du groupe (normalement 1004 mais va t on savoir...)              
 							# GUID=$(cat /etc/group | grep primtux-nfs | cut -d ":" -f 3)
@@ -84,8 +84,8 @@ fi
       		        		# Attribution des droits
 							chown administrateur:administrateur /home/administrateur/partage-administrateur
 							chown 01-mini:01-mini /home/01-mini/partage-mini
-							chown 02-super:02-super /home/02-suoer/partage-mini
-							chown 03-maxi:03-maxi /home/03-maxi/partage-mini
+							chown 02-super:02-super /home/02-super/partage-super
+							chown 03-maxi:03-maxi /home/03-maxi/partage-maxi
 
       		        		# Configuration du fichier exports
       		        		# Partage lecture / ecriture
