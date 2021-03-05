@@ -15,7 +15,12 @@
 #
 # Syntaxe (soit via sudo soit via le compte root)
 # primux-nfs-share-server.sh 
+#
 # 
+# Lancer le script avec l'option clean pour effacer les modifications 
+# apportées au système
+# primux-nfs-share-server.sh clean 
+#
 
 # Test des droits d'execution
 if [[ $EUID -ne 0 ]]; then
@@ -36,12 +41,17 @@ if [[ $1 = "clean" ]]
 			rm -rf /home/02-super/partage-super
 			rm -rf /home/03-maxi/partage-maxi
 			rm -rf /home/administrateur/partage-administrateur
-			
+
+			# On supprime les utilisateurs du groupe créé
+			deluser administrateur primtux-nfs
+			deluser 01-mini primtux-nfs
+			deluser 02-super primtux-nfs
+			deluser 03-maxi primtux-nfs
+						
 			# On rétablit les fichiers d'origine
 			sed -i '/#PrimtuxNFS/{N;N;N;N;N;N;N;d;}' /etc/exports
 			sed -i '/#PrimtuxNFS/{N;N;N;N;d;}' /etc/hosts.allow 
 
-		
 			# On redémarre les services
 			exportfs -a
 			systemctl restart nfs-kernel-server
