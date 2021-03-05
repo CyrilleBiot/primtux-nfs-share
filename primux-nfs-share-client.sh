@@ -35,6 +35,13 @@ if [[ $1 = "clean" ]]
 	# Confirmer la suppression de la configuration
 	read -p "Attention. Voulez réellement supprimer la config nfs serveur (oui / non) ?" answer
 	if echo "$answer" | grep -i "^o" ;then
+	
+		# Montage des nouveaux partages
+		umount /home/01-mini/partage-mini
+		umount /home/02-super/partage-super
+		umount /home/03-maxi/partage-maxi
+		umount /home/administrateur/partage-administrateur
+		
 		# On efface la configuration
 		rm -rf /home/01-mini/partage-mini
 		rm -rf /home/02-super/partage-super
@@ -42,11 +49,8 @@ if [[ $1 = "clean" ]]
 		rm -rf /home/administrateur/partage-administrateur
 		
 		# On rétablit les fichiers d'origine
-		sed -e '/# primtux/{N;N;N;N;N;d}' /etc/fstab
-		
-		# On redémarre les services
-		exportfs -a
-		systemctl restart nfs-kernel-server
+		sed -i '/#PrimtuxNFS/{N;N;N;N;d;}' /etc/fstab
+
 		exit 1
 	else
 		exit 1
@@ -96,7 +100,7 @@ echo "Le dossier /home/administrateur/partage-administrateur a été créé."
 
 # Insertion dans fstab
 
-echo "# Partage NFS Primtux" >> /etc/fstab
+echo "#PrimtuxNFS" >> /etc/fstab
 echo "$ipServeur:/home/01-mini/partage-mini /home/01-mini/partage-mini  nfs rw,users 0 0"  >> /etc/fstab
 echo "$ipServeur:/home/02-super/partage-super /home/02-super/partage-super nfs rw,users 0 0"  >> /etc/fstab
 echo "$ipServeur:/home/03-maxi/partage-maxi /home/03-maxi/partage-maxi nfs rw,users 0 0"  >> /etc/fstab
