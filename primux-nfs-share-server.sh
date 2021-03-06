@@ -42,11 +42,15 @@ if [[ $1 = "clean" ]]
 			rm -rf /home/03-maxi/partage-maxi
 			rm -rf /home/administrateur/partage-administrateur
 
-			# On supprime les utilisateurs du groupe créé
+			# On retire  les utilisateurs du groupe primtux-nfs
 			deluser administrateur primtux-nfs
 			deluser 01-mini primtux-nfs
 			deluser 02-super primtux-nfs
 			deluser 03-maxi primtux-nfs
+
+			# On supprume le groupe primtux-nfs
+			groupdel primtux-nfs
+			
 						
 			# On rétablit les fichiers d'origine
 			sed -i '/#PrimtuxNFS/{N;N;N;N;N;N;N;d;}' /etc/exports
@@ -55,6 +59,11 @@ if [[ $1 = "clean" ]]
 			# On redémarre les services
 			exportfs -a
 			systemctl restart nfs-kernel-server
+
+			echo "Configuration initiale réinstallée."
+			echo "Penser à effacer la configuration de vos clients."
+			echo "sur les postes clients, lancer la commande :"
+			echo "sudo bash /chemin/vers/script/primux-nfs-share-client.sh clean"
 			exit			
 	else
 		exit
