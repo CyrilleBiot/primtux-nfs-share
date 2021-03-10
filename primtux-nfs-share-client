@@ -90,8 +90,8 @@ fi
 # Attribution des droits
 	chown administrateur:administrateur /home/administrateur/partage-administrateur
 	chown 01-mini:01-mini /home/01-mini/partage-mini
-	chown 02-super:02-super /home/02-suoer/partage-mini
-	chown 03-maxi:03-maxi /home/03-maxi/partage-mini
+	chown 02-super:02-super /home/02-super/partage-super
+	chown 03-maxi:03-maxi /home/03-maxi/partage-maxi
 
 # Affichage Utilisateur
 	echo "Le dossier /home/01-mini/partage-mini a été créé."
